@@ -86,3 +86,9 @@ Your Name - [@karandumbre](https://x.com/karandumbre) - karandumbre1@gmail.com
 Project Link: [https://github.com/Karandumbre/clock-timer](https://github.com/Karandumbre/clock-timer)
 
 ### Demo
+
+
+
+https://github.com/Karandumbre/clock-timer/assets/40163773/4347b610-0b37-49c8-99bc-913953e9f888
+
+
