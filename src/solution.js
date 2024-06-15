@@ -1,9 +1,9 @@
-import React, { Fragment, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 
 let pause = false;
 let timerStarted = false;
 
-function Solution() {
+export const Solution = () => {
   const Ref = useRef(null);
 
   const [minutes, setMinutes] = useState("");
@@ -40,22 +40,16 @@ function Solution() {
 
   const onMinutesChange = (e) => {
     setMinutes(e.target.value);
-    setTotalSeconds(() => {
-      return convertTimeToSeconds(e.target.value, seconds);
-    });
+    setTotalSeconds(convertTimeToSeconds(e.target.value, seconds));
   };
 
   const onSecondsChange = (e) => {
     setSeconds(e.target.value);
-    setTotalSeconds(() => {
-      return convertTimeToSeconds(minutes, e.target.value);
-    });
+    setTotalSeconds(convertTimeToSeconds(minutes, e.target.value));
   };
 
   const clearTimer = () => {
-    if (Ref.current) {
-      clearInterval(Ref.current);
-    }
+    if (Ref.current) clearInterval(Ref.current);
   };
 
   const startTimerFromStart = () => {
@@ -92,31 +86,32 @@ function Solution() {
   };
 
   const formatSecondsToMinAndSec = (totalSeconds) => {
-    var mins = Math.trunc(totalSeconds / 60);
-    var secs = totalSeconds % 60;
+    let mins = Math.trunc(totalSeconds / 60);
+    let secs = totalSeconds % 60;
     return `${mins < 10 ? "0" + mins : mins}:${secs < 10 ? "0" + secs : secs}`;
   };
 
   return (
-    <Fragment>
-      <label>
-        <input type="number" value={minutes} onChange={onMinutesChange} />
-        Minutes
-      </label>
-      <label>
-        <input type="number" value={seconds} onChange={onSecondsChange} />
-        Seconds
-      </label>
+    <div className="timer-container">
+      <div className="inputs">
+        <label>
+          <input type="number" value={minutes} onChange={onMinutesChange} />
+          Minutes
+        </label>
+        <label>
+          <input type="number" value={seconds} onChange={onSecondsChange} />
+          Seconds
+        </label>
+      </div>
 
-      <button onClick={startTimer}>START</button>
-      <button onClick={pauseResumeTimer}>PAUSE / RESUME</button>
-      <button onClick={resetTimer}>RESET</button>
-
-      <h1 data-testid="running-clock">
+      <div className="buttons">
+        <button onClick={startTimer}>START</button>
+        <button onClick={pauseResumeTimer}>PAUSE / RESUME</button>
+        <button onClick={resetTimer}>RESET</button>
+      </div>
+      <h1 data-testid="running-clock" className="clock-display">
         {formatSecondsToMinAndSec(totalSeconds)}
       </h1>
-    </Fragment>
+    </div>
   );
-}
-
-export default Solution;
+};
